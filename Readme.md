@@ -1,4 +1,4 @@
-# Starter pack for ASP.NET Core 2.2 Web API using C#
+# ASP.NET Core 7.0 Web API using C#
 
 ## Overview
 
