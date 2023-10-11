@@ -27,7 +27,7 @@ Import SQL script to create database (01-sensordb.sql) and insert test data into
 
 ## Docker Deployment
 
-<>`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+[comment]: `sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
 
 - Deployment with Docker is as simple as executing `docker-compose up` which will setup and deploy both DB and Web API.
 
