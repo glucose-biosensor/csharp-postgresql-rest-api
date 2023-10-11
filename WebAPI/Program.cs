@@ -1,32 +1,32 @@
-﻿/*
- * Copyright (c) 2019, TopCoder, Inc. All rights reserved.
- */
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using WebAPI.Services;
+using WebAPI.Models;
+using WebAPI.Data;
 
-namespace WebAPI
-{
-    /// <summary>
-    /// Entry class of the app.
-    /// </summary>
-    public class Program
-    {
-        /// <summary>
-        /// Entry method of the app.
-        /// </summary>
-        /// <param name="args">The arguments.</param>
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
 
-        /// <summary>
-        /// Creates the web host builder.
-        /// </summary>
-        /// <param name="args">The arguments.</param>
-        /// <returns>The web host builder.</returns>
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
-}
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")!)
+);
+builder.Services.AddScoped<ISensorDataService>();
+builder.Services.AddScoped<IUserService>();
+//builder.Services.AddScoped<IWavelengthService>();
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

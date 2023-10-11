@@ -3,9 +3,10 @@
  */
 
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace WebAPI.Data.Entities
-{
+namespace WebAPI.Models;
+
     /// <summary>
     /// The User entity.
     /// </summary>
@@ -18,6 +19,8 @@ namespace WebAPI.Data.Entities
         /// The user handle.
         /// </value>
         [Required]
-        public string Handle { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public ICollection<SensorData> SensorData { get; } // Collection navigation containing dependents
     }
-}
+

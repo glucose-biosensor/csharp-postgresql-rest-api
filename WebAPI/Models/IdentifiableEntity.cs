@@ -2,7 +2,7 @@
  * Copyright (c) 2019, TopCoder, Inc. All rights reserved.
  */
 
-namespace WebAPI.Data.Entities
+namespace WebAPI.Models
 {
     /// <summary>
     /// Represents the base class for all identifiable entities.

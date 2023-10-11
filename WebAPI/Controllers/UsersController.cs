@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Common;
-using WebAPI.Data.Entities;
-using WebAPI.Data.Repositories;
+using WebAPI.Models;
+using WebAPI.Services;
 using WebAPI.Exceptions;
 
 namespace WebAPI.Controllers
@@ -19,13 +19,13 @@ namespace WebAPI.Controllers
         /// <summary>
         /// The users repository.
         /// </summary>
-        private readonly IUserRepository _repository;
+        private readonly IUserService _repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersController"/> class.
         /// </summary>
         /// <param name="repository">The User repository.</param>
-        public UsersController(IUserRepository repository)
+        public UsersController(IUserService repository)
         {
             _repository = repository;
         }
@@ -49,10 +49,10 @@ namespace WebAPI.Controllers
         public int Create(User model)
         {
             ValidateModel(model);
-            var existing = _repository.GetByHandle(model.Handle);
+            var existing = _repository.GetUserByUsername(model.Username);
             if (existing != null)
             {
-                throw new ArgumentException($"User with handle '{model.Handle}' already exists.");
+                throw new ArgumentException($"User with handle '{model.Username}' already exists.");
             }
 
             return _repository.Create(model).Id;
@@ -70,12 +70,12 @@ namespace WebAPI.Controllers
             EnsureUserExists(id);
 
             ValidateModel(model);
-            var existing = _repository.GetByHandle(model.Handle);
+            var existing = _repository.GetUserByUsername(model.Username);
             if (existing != null)
             {
                 if (existing.Id != id)
                 {
-                    throw new ArgumentException($"User with handle '{model.Handle}' already exists.");
+                    throw new ArgumentException($"User with handle '{model.Username}' already exists.");
                 }
                 else
                 {
@@ -103,12 +103,12 @@ namespace WebAPI.Controllers
         /// Ensures that the user exists.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        private void EnsureUserExists(int userId)
+        private void EnsureUserExists(int idUser)
         {
-            var existing = _repository.GetById(userId);
+            var existing = _repository.GetUserById(idUser);
             if (existing == null)
             {
-                throw new EntityNotFoundException($"User with id '{userId}' doesn't exist.");
+                throw new EntityNotFoundException($"User with id '{idUser}' doesn't exist.");
             }
         }
 
@@ -119,7 +119,7 @@ namespace WebAPI.Controllers
         private static void ValidateModel(User model)
         {
             Util.ValidateArgumentNotNull(model, nameof(model));
-            Util.ValidateArgumentNotNullOrEmpty(model.Handle, nameof(model.Handle));
+            Util.ValidateArgumentNotNullOrEmpty(model.Username, nameof(model.Username));
         }
     }
 }

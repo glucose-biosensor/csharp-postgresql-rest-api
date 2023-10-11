@@ -3,14 +3,15 @@
  */
 using System.Collections.Generic;
 using System.Linq;
-using WebAPI.Data.Entities;
+using WebAPI.Data;
+using WebAPI.Models;
 
-namespace WebAPI.Data.Repositories.Impl
+namespace WebAPI.Services.Impl
 {
     /// <summary>
     /// The user repository.
     /// </summary>
-    public class UserRepository : IUserRepository
+    public class UserService: IUserService
     {
         /// <summary>
         /// The database context.
@@ -21,7 +22,7 @@ namespace WebAPI.Data.Repositories.Impl
         /// Initializes a new instance of the <see cref="UserRepository"/> class.
         /// </summary>
         /// <param name="context">The DB context.</param>
-        public UserRepository(AppDbContext context)
+        public UserService(AppDbContext context)
         {
             _db = context;
         }
@@ -31,9 +32,9 @@ namespace WebAPI.Data.Repositories.Impl
         /// </summary>
         /// <param name="handle">The user handle.</param>
         /// <returns>Found user or null.</returns>
-        public User GetByHandle(string handle)
+        public User GetUserByUsername(string username)
         {
-            return _db.Users.FirstOrDefault(x => x.Handle == handle);
+            return _db.Users.FirstOrDefault(x => x.Username == username);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace WebAPI.Data.Repositories.Impl
         /// </summary>
         /// <param name="id">The user Id.</param>
         /// <returns>Found user or null.</returns>
-        public User GetById(int id)
+        public User GetUserById(int id)
         {
             return _db.Users.Find(id);
         }
@@ -73,8 +74,8 @@ namespace WebAPI.Data.Repositories.Impl
         /// <param name="entity">The user entity.</param>
         public void Update(User entity)
         {
-            var existing = GetById(entity.Id);
-            existing.Handle = entity.Handle;
+            var existing = GetUserById(entity.Id);
+            existing.Username = entity.Username;
             _db.SaveChanges();
         }
 
@@ -84,7 +85,7 @@ namespace WebAPI.Data.Repositories.Impl
         /// <param name="id">The user Id.</param>
         public void Delete(int id)
         {
-            var existing = GetById(id);
+            var existing = GetUserById(id);
             _db.Remove(existing);
             _db.SaveChanges();
         }

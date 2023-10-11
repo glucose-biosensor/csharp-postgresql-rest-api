@@ -1,15 +1,16 @@
 ﻿/*
  * Copyright (c) 2019, TopCoder, Inc. All rights reserved.
  */
-using System.Collections.Generic;
-using WebAPI.Data.Entities;
 
-namespace WebAPI.Data.Repositories
-{
+using System.Collections.Generic;
+using WebAPI.Models;
+
+namespace WebAPI.Services;
+
     /// <summary>
     /// The user repository interface.
     /// </summary>
-    public interface IUserRepository
+    public interface IUserService
     {
         /// <summary>
         /// Creates the given user.
@@ -35,14 +36,14 @@ namespace WebAPI.Data.Repositories
         /// </summary>
         /// <param name="handle">The user handle.</param>
         /// <returns>Found user or null.</returns>
-        User GetByHandle(string handle);
+        User GetUserByUsername(string handle);
 
         /// <summary>
         /// Gets the User by Id.
         /// </summary>
         /// <param name="id">The user Id.</param>
         /// <returns>Found user or null.</returns>
-        User GetById(int id);
+        User GetUserById(int id);
 
         /// <summary>
         /// Updates given user.
@@ -50,4 +51,4 @@ namespace WebAPI.Data.Repositories
         /// <param name="entity">The user entity.</param>
         void Update(User entity);
     }
-}
+
