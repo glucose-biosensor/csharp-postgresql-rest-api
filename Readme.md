@@ -3,7 +3,7 @@
 ## Overview
 
 
-### Deploy PostgreSQL database
+## Deploy PostgreSQL database
 
 Login on PostgreSQL user account:
 
