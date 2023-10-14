@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Services;
-using WebAPI.Models;
+using WebAPI.Services.Impl;
 using WebAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +9,8 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")!)
 );
-builder.Services.AddScoped<ISensorDataService>();
-builder.Services.AddScoped<IUserService>();
+builder.Services.AddScoped<ISensorDataService, SensorDataService>();
+builder.Services.AddScoped<IUserService, UserService>();
 //builder.Services.AddScoped<IWavelengthService>();
 
 builder.Services.AddControllers();
