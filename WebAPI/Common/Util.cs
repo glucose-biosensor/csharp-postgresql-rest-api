@@ -62,5 +62,6 @@ namespace WebAPI.Common
                 throw new ArgumentException($"{paramName} cannot be empty.", paramName);
             }
         }
+
     }
 }
