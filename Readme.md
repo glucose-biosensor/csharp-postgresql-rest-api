@@ -1,9 +1,9 @@
-# Starter pack for ASP.NET Core 2.2 Web API using C#
+# ASP.NET Core 7.0 Web API using C#
 
 ## Overview
 
 
-### Deploy PostgreSQL database
+## Deploy PostgreSQL database
 
 Login on PostgreSQL user account:
 
@@ -27,7 +27,7 @@ Import SQL script to create database (01-sensordb.sql) and insert test data into
 
 ## Docker Deployment
 
-`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin` 
 
 - Deployment with Docker is as simple as executing `docker-compose up` which will setup and deploy both DB and Web API.
 
