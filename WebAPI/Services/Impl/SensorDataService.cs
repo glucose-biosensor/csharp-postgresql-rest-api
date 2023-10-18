@@ -82,7 +82,10 @@ namespace WebAPI.Services.Impl
         public void Delete(int idUser)
         {
             var existing = GetSensorDataByUserId(idUser);
-            _db.Remove(existing);
+            foreach(SensorData d in existing)
+            {
+                _db.Remove(d);
+            }
             _db.SaveChanges();
         }
     }

@@ -38,6 +38,17 @@ namespace WebAPI.Controllers
             return _repository.GetAll();
         }
 
+
+        /// <summary>
+        /// Gets all SensorData items given user Id.
+        /// </summary>
+        /// <returns>User's SensorData.</returns>
+        [HttpGet("{id}")]
+        public IList<SensorData> GetUserData(int id)
+        {
+            return _repository.GetSensorDataByUserId(id);
+        }
+
         /// <summary>
         /// Creates the specified SensorData item.
         /// </summary>

@@ -18,7 +18,7 @@ namespace WebAPI.Models;
         public int IdUser { get; set; }
         public int IdWavelength { get; set; }
         public int Timestamp { get; set; }
-        public float Data { get; set; }
+        public double Data { get; set; }
 
         public User User { get; set; } = null!;
         public Wavelength Wavelength { get; set; } = null!;
