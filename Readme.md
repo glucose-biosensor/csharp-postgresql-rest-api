@@ -3,7 +3,8 @@
 - [Overview](#overview)
 - [Deploy PostgreSQL database](#deploy-postgresql-database)
 - [Docker Deployment](#docker-deployment)
-
+- [Verification](#verification)
+- 
 ## Overview
 
 ## Deploy PostgreSQL database
