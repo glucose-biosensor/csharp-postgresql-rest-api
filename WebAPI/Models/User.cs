@@ -21,6 +21,6 @@ namespace WebAPI.Models;
         [Required]
         public string Username { get; set; }
         public string Password { get; set; }
-        public ICollection<SensorData> SensorData { get; } // Collection navigation containing dependents
+        public ICollection<SensorData> SensorData { get; } = new List<SensorData>(); // Collection navigation containing dependents
     }
 
