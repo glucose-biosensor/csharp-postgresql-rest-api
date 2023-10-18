@@ -1,8 +1,8 @@
 # ASP.NET Core 7.0 Web API using C#
 
--[Overview](#Overview)
--[Deploy PostgreSQL database](#Deploy PostgreSQL database)
--[Docker Deployment](#Docker Deployment)
+- [Overview](#overview)
+- [Deploy PostgreSQL database](#deploy-postgresql-database)
+- [Docker Deployment](#docker-deployment)
 
 ## Overview
 
